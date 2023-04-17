@@ -1,0 +1,20 @@
+.form-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* set the height of the container to the viewport height */
+  }
+.form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%; /* set the width of the form to 100% of the container */
+    max-width: 600px; /* set a maximum width for the form */
+    padding: 20px;
+  }
+  
+.mat-form-field {
+    margin-bottom: 20px;
+}
