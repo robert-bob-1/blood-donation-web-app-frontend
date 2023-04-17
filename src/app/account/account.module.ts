@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-
+import { MatFormFieldModule } from '@angular/material/form-field';
 import { AccountRoutingModule } from './account-routing.module';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
@@ -13,12 +13,13 @@ import { RouterModule } from '@angular/router';
         CommonModule,
         ReactiveFormsModule,
         AccountRoutingModule,
-        RouterModule
+        RouterModule,
+        MatFormFieldModule
     ],
     declarations: [
         LoginComponent,
         RegisterComponent,
-        LayoutComponent
+        LayoutComponent,
     ]
 })
 export class AccountModule { }

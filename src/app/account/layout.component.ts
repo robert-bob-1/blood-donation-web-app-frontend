@@ -9,8 +9,8 @@ export class LayoutComponent {
         private accountService: AccountService
     ) {
         // redirect to home if already logged in
-        // if (this.accountService.userValue) {
-        //     this.router.navigate(['/']);
-        // }
+        if (localStorage.getItem('user')) {
+            this.router.navigate(['/']);
+        }
     }
 }

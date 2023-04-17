@@ -11,46 +11,35 @@ import { User } from './_models/user';
   styleUrls: ['./app.component.css']
 })
 
-export class AppComponent implements OnInit {
-  // public currentDonor: Donor = {
-  //   uuid: '',
-  //   email: '',
-  //   password: '',
-  //   firstName: '',
-  //   lastName: '',
-  //   userType: '',
-  //   bloodType: ''
-  // };
-
+export class AppComponent{
   constructor(private donorService: DonorService,
               private accountService: AccountService) {}
 
-  public ngOnInit() {
-    // this.getDonorByEmail("t");
-    this.loginUser('t', 't');
-  }
-
-  public loginUser(email: string, password: string): void {
-    this.accountService.login(email, password).subscribe(
-      (response: User) => {
-        console.log(response);
-        console.log(localStorage.getItem('user'));
-      }, (error: HttpErrorResponse) => {
-        alert(error.message);
-      }
-    );
-  }
-
-  public getDonorByEmail(email: string): void {
-
-    this.donorService.getDonorByEmail(email).subscribe(
-      (response: Donor) => {
-        // this.currentDonor = response;
-      },
-      (error: HttpErrorResponse) => {
-        alert(error.message);
-      }
-    );
-  }
-
 }
+
+// public ngOnInit() {
+//   // this.loginUser('t', 't');
+// }
+
+// public loginUser(email: string, password: string): void {
+  //   this.accountService.login(email, password).subscribe(
+  //     (response: User) => {
+  //       console.log(response);
+  //       console.log(localStorage.getItem('user'));
+  //     }, (error: HttpErrorResponse) => {
+  //       alert(error.message);
+  //     }
+  //   );
+  // }
+
+  // public getDonorByEmail(email: string): void {
+
+  //   this.donorService.getDonorByEmail(email).subscribe(
+  //     (response: Donor) => {
+  //       // this.currentDonor = response;
+  //     },
+  //     (error: HttpErrorResponse) => {
+  //       alert(error.message);
+  //     }
+  //   );
+  // }

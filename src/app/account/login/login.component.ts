@@ -28,6 +28,9 @@ export class LoginComponent {
       return;
     }
 
+    this.accountService.login(this.f['email'].value, this.f['password'].value);
+    console.log(localStorage.getItem('user'));
+
     // this.accountService.login(this.f.email.value, this.f.password.value);
     
   }

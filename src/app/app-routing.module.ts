@@ -1,13 +1,15 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-const accountModule = () => import('./account/account.module').then(x => x.AccountModule);
+import { AccountModule } from './account/account.module';
+import { LoginComponent } from './account/login/login.component';
 
 const routes: Routes = [
-  { path: 'account', loadChildren: accountModule },
+  // { path: 'account', component: AccountModule },
+  { path: 'account', component: AccountModule },
 
-  { path: '**', redirectTo: 'account' }
-]
+  { path: '', redirectTo: '/account/login', pathMatch: 'full' }
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
