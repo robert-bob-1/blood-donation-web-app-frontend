@@ -29,6 +29,7 @@ export class AccountService {
             if (user.userType === 'donor') {
                 this.donorService.getDonorByEmail(email).subscribe((donor) => {
                     localStorage.setItem('user', JSON.stringify(donor));
+                    this.router.navigate(['/donor']);
                 });
             }
         });
@@ -39,12 +40,11 @@ export class AccountService {
         return this.donorService.registerDonor(donorDTO);
     }
 
-    // logout() {
-    //     // remove user from local storage and set current user to null
-    //     localStorage.removeItem('user');
-    //     this.userSubject.next(null);
-    //     this.router.navigate(['/account/login']);
-    // }
+    logout() {
+        // remove user from local storage and set current user to null
+        localStorage.removeItem('user');
+        // this.router.navigate(['/login']);
+    }
 
     // register(user: User) {
     //     return this.http.post(`${environment.apiUrl}/users/register`, user);

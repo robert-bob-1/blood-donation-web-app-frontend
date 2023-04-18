@@ -31,7 +31,7 @@ export class RegisterComponent {
 
   onRegister() {
     if (this.form.invalid) {
-      return; 
+      return;
     }
 
     let donorDTO: DonorCreateDTO = {
