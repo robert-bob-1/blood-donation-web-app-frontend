@@ -1,1 +1,51 @@
-<p>register works!</p>
+<div class="form-container">
+    <h2>Register</h2>
+    <form [formGroup]="form" class="form" >
+        <mat-form-field appearance="fill">
+            <mat-label>Email</mat-label>
+            <input matInput type="text" formControlName="email" />
+            <mat-error *ngIf="this.form.touched && this.form.invalid">
+                Username is invalid
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+            <mat-label>Password</mat-label>
+            <input matInput type="password" formControlName="password" />
+            <mat-error *ngIf="this.form.touched && this.form.invalid">
+                Password is invalid
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+            <mat-label>First Name</mat-label>
+            <input matInput type="text" formControlName="firstName" />
+            <mat-error *ngIf="this.form.invalid">
+                Field is invalid
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+            <mat-label>Last Name</mat-label>
+            <input matInput type="text" formControlName="lastName" />
+            <mat-error *ngIf="this.form.invalid">
+                Field is invalid
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+            <mat-label>Blood Type</mat-label>
+            <input matInput type="text" formControlName="bloodType" />
+            <mat-error *ngIf="this.form.invalid">
+                Field is invalid
+            </mat-error>
+        </mat-form-field>
+
+        <div>
+            <button mat-raised-button color="primary"
+                (click)="onRegister()">
+                Register
+            </button>
+        </div>
+    </form>
+</div>

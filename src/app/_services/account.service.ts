@@ -8,6 +8,7 @@ import { User } from '../_models/user';
 import { environment } from '@environments/environment';
 import { UserService } from './users/user.service';
 import { DonorService } from './users/donor.service';
+import { DonorCreateDTO } from '@app/_models/donorCreateDTO';
 
 @Injectable({ providedIn: 'root' })
 export class AccountService {
@@ -32,6 +33,10 @@ export class AccountService {
             }
         });
         return user;
+    }
+
+    register (donorDTO: DonorCreateDTO): Observable<Donor> {
+        return this.donorService.registerDonor(donorDTO);
     }
 
     // logout() {
