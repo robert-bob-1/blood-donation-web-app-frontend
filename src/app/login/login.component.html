@@ -2,23 +2,24 @@
     <h2>Login</h2>
     <form [formGroup]="form" class="form" >
         <mat-form-field appearance="fill">
-            <mat-label>Username</mat-label>
-            <input matInput type="text" formControlName="username" />
-            <!-- <mat-error *ngIf="submitted && f.username.errors">
-                <div *ngIf="f.username.errors.required">Username is required</div>
-            </mat-error> -->
+            <mat-label>Email</mat-label>
+            <input matInput type="text" formControlName="email" />
+            <mat-error *ngIf="this.form.touched && this.form.invalid">
+                Username is invalid
+            </mat-error>
         </mat-form-field>
 
         <mat-form-field appearance="fill">
             <mat-label>Password</mat-label>
             <input matInput type="password" formControlName="password" />
-            <!-- <mat-error *ngIf="submitted && f.password.errors">
-                <div *ngIf="f.password.errors.required">Password is required</div>
-            </mat-error> -->
+            <mat-error *ngIf="this.form.invalid">
+                Password is invalid
+            </mat-error>
         </mat-form-field>
 
         <div>
-            <button mat-raised-button color="primary">
+            <button mat-raised-button color="primary"
+                (click)="onClick()">
                 Login
             </button>
         </div>

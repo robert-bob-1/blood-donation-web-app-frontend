@@ -14,7 +14,7 @@
     max-width: 600px; /* set a maximum width for the form */
     padding: 20px;
   }
-  
-.mat-form-field {
-    margin-bottom: 20px;
+
+.form .mat-form-field {
+    width: 100%; /* set the width of the form field to 100% of the form */
 }

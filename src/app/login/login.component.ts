@@ -8,24 +8,20 @@ import { AccountService } from 'src/app/_services/account.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
-  form!: FormGroup;
+  public form: FormGroup  = new FormGroup({
+    email: new FormControl('', [Validators.required]),
+    password: new FormControl('', [Validators.required])
+  });;
 
   constructor(
     private accountService: AccountService,
   ) { }
 
-  ngOnInit() {
-    this.form = new FormGroup({
-      email: new FormControl('', [Validators.required, Validators.email]),
-      password: new FormControl('', [Validators.required, Validators.minLength(6)])
-    });
-  }
-
   get f() { return this.form.controls; }
 
-  onSubmit() {
+  onClick() {
     if (this.form.invalid) {
-      return;
+      return; 
     }
 
     this.accountService.login(this.f['email'].value, this.f['password'].value);

@@ -19,14 +19,8 @@ export class AccountService {
         private http: HttpClient,
         private userService: UserService,
         private donorService: DonorService
-    ) {
-        // this.userSubject = new BehaviorSubject(JSON.parse(localStorage.getItem('user')!));
-        // this.user = this.userSubject.asObservable();
-    }
+    ) {}
 
-    // public get userValue() {
-    //     return this.userSubject.value;
-    // }
 
     login(email: string, password: string): Observable<User> {
         const user = this.userService.getUserByEmailAndPassword(email, password);
@@ -35,7 +29,6 @@ export class AccountService {
                 this.donorService.getDonorByEmail(email).subscribe((donor) => {
                     localStorage.setItem('user', JSON.stringify(donor));
                 });
-                console.log(localStorage.getItem('user'));
             }
         });
         return user;
