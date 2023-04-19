@@ -16,6 +16,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AccountService } from './_services/account.service';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RegisterComponent } from './register/register.component';
+import { MatIconModule } from '@angular/material/icon';
 
 
 @NgModule({
@@ -35,7 +36,8 @@ import { RegisterComponent } from './register/register.component';
     
     MatFormFieldModule,
     MatInputModule,
-    MatButtonModule
+    MatButtonModule,
+    MatIconModule
   ],
   providers: [DonorService, AccountService],
   bootstrap: [AppComponent]

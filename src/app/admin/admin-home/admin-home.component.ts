@@ -4,6 +4,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { Doctor } from '@app/_models/doctor';
 import { DoctorService } from '@app/_services/users/doctor.service';
 import { AddDoctorDialogComponent } from './add-doctor-dialog/add-doctor-dialog.component';
+import { EditDoctorDialogComponent } from './edit-doctor-dialog/edit-doctor-dialog.component';
 
 @Component({
   selector: 'app-admin-home',
@@ -12,11 +13,11 @@ import { AddDoctorDialogComponent } from './add-doctor-dialog/add-doctor-dialog.
 })
 export class AdminHomeComponent {
   public doctors!: Doctor[];
-  public displayedColumns: string[] = [ 'email', 'password', 'firstName', 'lastName'];
+  public displayedColumns: string[] = [ 'email', 'password', 'firstName', 'lastName', 'actions'];
 
   constructor(
     private doctorService: DoctorService,
-    public addDoctorDialog: MatDialog
+    public dialog: MatDialog
   ) { }
 
   ngOnInit() {
@@ -35,10 +36,32 @@ export class AdminHomeComponent {
   }
 
   public openAddDoctorDialog(): void {
-    const dialogRef = this.addDoctorDialog.open(AddDoctorDialogComponent);
+    const dialogRef = this.dialog.open(AddDoctorDialogComponent);
 
     dialogRef.afterClosed().subscribe(result => {
       this.getDoctors();
     });
+  }
+
+  public openEditDoctorDialog(doctor: Doctor): void {
+    const dialogRef = this.dialog.open(EditDoctorDialogComponent, {
+      data: doctor
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      this.getDoctors();
+    });
+  }
+
+  public deleteDoctor(doctor: Doctor): void {
+    this.doctorService.deleteDoctor(doctor.uuid).subscribe(
+      (response: void) => {
+        console.log(response);
+        this.getDoctors();
+      },
+      (error: HttpErrorResponse) => {
+        alert(error.message);
+      }
+    );
   }
 }

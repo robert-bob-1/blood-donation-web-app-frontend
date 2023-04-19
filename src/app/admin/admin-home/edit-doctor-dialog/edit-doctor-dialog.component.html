@@ -1,0 +1,46 @@
+<h2 mat-dialog-title> Edit Doctor </h2>
+
+<mat-dialog-content class="form-container">
+    <form [formGroup]="form" class="form" >
+        <mat-form-field appearance="fill">
+            <mat-label>Email</mat-label>
+            <input matInput type="text" formControlName="email" />
+            <mat-error *ngIf="this.form.touched && this.form.invalid">
+                Username is invalid
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+            <mat-label>Password</mat-label>
+            <input matInput type="password" formControlName="password" />
+            <mat-error *ngIf="this.form.invalid">
+                Password is invalid
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+            <mat-label>First Name</mat-label>
+            <input matInput type="text" formControlName="firstName" />
+            <mat-error *ngIf="this.form.invalid">
+                First Name is invalid
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+            <mat-label>Last Name</mat-label>
+            <input matInput type="text" formControlName="lastName" />
+            <mat-error *ngIf="this.form.invalid">
+                Last Name is invalid
+            </mat-error>
+        </mat-form-field>
+
+        <button mat-raised-button color="primary"
+            (click)="onEditDoctor()">
+            Edit Doctor
+        </button>
+    </form>
+
+    
+
+</mat-dialog-content>
+

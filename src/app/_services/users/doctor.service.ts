@@ -23,4 +23,12 @@ export class DoctorService {
   public registerDoctor(doctor: Doctor): Observable<Doctor> {
     return this.http.post<Doctor>(`${this.apiServerUrl}/doctor/register`, doctor);
   }
+
+  public editDoctor(doctor: Doctor): Observable<Doctor> {
+    return this.http.put<Doctor>(`${this.apiServerUrl}/doctor/edit`, doctor);
+  }
+
+  public deleteDoctor(doctorId: string): Observable<void> {
+    return this.http.delete<void>(`${this.apiServerUrl}/doctor/delete/${doctorId}`);
+  }
 }
