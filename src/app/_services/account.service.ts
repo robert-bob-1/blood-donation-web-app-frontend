@@ -9,6 +9,8 @@ import { environment } from '@environments/environment';
 import { UserService } from './users/user.service';
 import { DonorService } from './users/donor.service';
 import { DonorCreateDTO } from '@app/_models/donorCreateDTO';
+import { AdminService } from './users/admin.service';
+import { DoctorService } from './users/doctor.service';
 
 @Injectable({ providedIn: 'root' })
 export class AccountService {
@@ -19,7 +21,9 @@ export class AccountService {
         private router: Router,
         private http: HttpClient,
         private userService: UserService,
-        private donorService: DonorService
+        private donorService: DonorService,
+        private adminService: AdminService,
+        private doctorService: DoctorService
     ) {}
 
 
@@ -30,6 +34,18 @@ export class AccountService {
                 this.donorService.getDonorByEmail(email).subscribe((donor) => {
                     localStorage.setItem('user', JSON.stringify(donor));
                     this.router.navigate(['/donor']);
+                });
+            }
+            else if (user.userType === 'admin') {
+                this.adminService.getAdminByEmail(email).subscribe((admin) => {
+                    localStorage.setItem('user', JSON.stringify(admin));
+                    this.router.navigate(['/admin']);
+                });
+            }
+            else if (user.userType === 'doctor') {
+                this.doctorService.getDoctorByEmail(email).subscribe((doctor) => {
+                    localStorage.setItem('user', JSON.stringify(doctor));
+                    this.router.navigate(['/doctor']);
                 });
             }
         });

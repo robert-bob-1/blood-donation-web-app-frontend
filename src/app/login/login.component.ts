@@ -22,7 +22,7 @@ export class LoginComponent {
   get f() { return this.form.controls; }
 
   ngOnInit() {
-    // this.accountService.logout();
+    this.accountService.logout();
   }
 
   onClick() {
@@ -32,7 +32,5 @@ export class LoginComponent {
 
     this.accountService.login(this.f['email'].value, this.f['password'].value);
     // console.log(localStorage.getItem('user'));
-
-    this.router.navigate(['/donor'])
   }
 }
