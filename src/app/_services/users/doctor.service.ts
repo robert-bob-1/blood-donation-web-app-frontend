@@ -15,4 +15,12 @@ export class DoctorService {
   public getDoctorByEmail(email: string): Observable<Doctor> {
     return this.http.get<Doctor>(`${this.apiServerUrl}/doctor/${email}`);
   }
+
+  public getAllDoctors(): Observable<Doctor[]> {
+    return this.http.get<Doctor[]>(`${this.apiServerUrl}/doctor/all`);
+  }
+
+  public registerDoctor(doctor: Doctor): Observable<Doctor> {
+    return this.http.post<Doctor>(`${this.apiServerUrl}/doctor/register`, doctor);
+  }
 }

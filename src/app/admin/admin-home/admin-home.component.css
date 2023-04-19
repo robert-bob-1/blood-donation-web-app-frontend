@@ -1,0 +1,21 @@
+button {
+    margin: 10px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+table {
+    width: 80%;
+}
+
+.table-container {
+    padding: 40px;
+    padding-top: 0px;
+}
+
+.button-container {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: normal;
+    align-items: center;
+  }

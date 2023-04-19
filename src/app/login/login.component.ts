@@ -9,7 +9,7 @@ import { AccountService } from 'src/app/_services/account.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
-  public form: FormGroup  = new FormGroup({
+  public form: FormGroup = new FormGroup({
     email: new FormControl('', [Validators.required]),
     password: new FormControl('', [Validators.required])
   });
