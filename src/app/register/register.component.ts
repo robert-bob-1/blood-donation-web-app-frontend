@@ -39,7 +39,6 @@ export class RegisterComponent {
       password: this.f['password'].value,
       firstName: this.f['firstName'].value,
       lastName: this.f['lastName'].value,
-      userType: 'donor',
       bloodType: this.f['bloodType'].value
     }
 

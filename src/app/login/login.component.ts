@@ -22,7 +22,7 @@ export class LoginComponent {
   get f() { return this.form.controls; }
 
   ngOnInit() {
-    this.accountService.logout();
+    localStorage.removeItem('user');
   }
 
   onClick() {

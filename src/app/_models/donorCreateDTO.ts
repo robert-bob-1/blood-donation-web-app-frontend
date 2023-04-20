@@ -3,6 +3,5 @@ export interface DonorCreateDTO {
     password: string;
     firstName: string;
     lastName: string;
-    userType: string; 
     bloodType: string;
 }

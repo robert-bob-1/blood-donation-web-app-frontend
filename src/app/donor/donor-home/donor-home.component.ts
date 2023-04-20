@@ -5,6 +5,7 @@ import { AccountService } from '@app/_services/account.service';
 import { LocationService } from '@app/_services/location.service';
 import { DonorService } from '@app/_services/users/donor.service';
 import { EditDonorDialogComponent } from './edit-donor-dialog/edit-donor-dialog.component';
+import { Donor } from '@app/_models/donor';
 
 @Component({
   selector: 'app-donor-home',
@@ -12,6 +13,7 @@ import { EditDonorDialogComponent } from './edit-donor-dialog/edit-donor-dialog.
   styleUrls: ['./donor-home.component.css']
 })
 export class DonorHomeComponent {// send donor as parameter to this component
+  public donor!: Donor;
   public locations!: Location[];
   public displayedColumns: string[] = [ 'name' ];
 
@@ -23,24 +25,26 @@ export class DonorHomeComponent {// send donor as parameter to this component
   ) { }
 
   ngOnInit() {
+    this.donor = JSON.parse(localStorage.getItem('user')!);
+
     this.getLocations();
   }
 
   public deleteAccount(): void {
-    // this.donorService.deleteDonor(this.donor.uuid).subscribe(
-    //   (response: void) => {
-    //     console.log(response);
-    //   },
-    //   (error: HttpErrorResponse) => {
-    //     alert(error.message);
-    //   }
-    // );
+    this.donorService.deleteDonor(this.donor.uuid).subscribe(
+      (response: void) => {
+        console.log(response);
+        this.accountService.logout();
+      },
+      (error: HttpErrorResponse) => {
+        alert(error.message);
+      }
+    );
   }
 
   public openEditDonorDialog(): void {
-    let donor = localStorage.getItem('user')!;
     const dialogRef = this.dialog.open(EditDonorDialogComponent, {
-      data: JSON.parse(donor)
+      data: this.donor
     });
 
     dialogRef.afterClosed().subscribe(result => {
