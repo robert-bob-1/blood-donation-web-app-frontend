@@ -25,31 +25,44 @@ export class EditDonorDialogComponent {
     @Inject(MAT_DIALOG_DATA) public data: Donor
     ) { }
 
-    ngOnInit() {
-      this.populateForm(this.data);
-    }
+  ngOnInit() {
+    this.populateForm(this.data);
+  }
 
-    public onUpdateDonor(): void {
-      const updatedDonor = _.merge(this.data, this.form.value);
+  public onUpdateDonor(): void {
+    const updatedDonor = _.merge(this.data, this.form.value);
 
-      this.donorService.updateDonor(updatedDonor).subscribe(
-        (response: any) => {
-          console.log(response);
-        },
-        (error: any) => {
-          console.log(error);
-        }
-      );
-    }
+    this.donorService.updateDonor(updatedDonor).subscribe(
+      (response: any) => {
+        console.log(response);
+      },
+      (error: any) => {
+        console.log(error);
+      }
+    );
+    localStorage.setItem('user', JSON.stringify(updatedDonor))
+  }
 
-    private populateForm(donor: Donor) {
-      this.form.setValue({
-        email: donor.email,
-        password: donor.password,
-        firstName: donor.firstName,
-        lastName: donor.lastName,
-        bloodType: donor.bloodType
-      });
-    }
+  private populateForm(donor: Donor) {
+    // let editableDonor = {
+    //   email: donor.email,
+    //   password: donor.password,
+    //   firstName: donor.firstName,
+    //   lastName: donor.lastName
+    // }
+    let editableDonor = {
+      email: '',
+      password: '',
+      firstName: '',
+      lastName: '',
+      bloodType: ''
+    };
+    editableDonor.email = donor.email;
+    editableDonor.password = donor.password;
+    editableDonor.firstName = donor.firstName;
+    editableDonor.lastName = donor.lastName;
+    editableDonor.bloodType = donor.bloodType;
+    this.form.setValue(editableDonor);
+  }
 
 }

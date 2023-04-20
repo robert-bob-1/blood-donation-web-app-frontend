@@ -40,7 +40,7 @@ export class EditDoctorDialogComponent {
     );
   }
 
-  populateForm(doctor: any) {
+  populateForm(doctor: Doctor) {
     let editableDoctor = {
       email: doctor.email,
       password: doctor.password,

@@ -22,7 +22,7 @@ export class DonorService {
   }
 
   public updateDonor(donor: Donor): Observable<Donor> {
-    return this.http.put<Donor>(`${this.apiServerUrl}/donor/register`, donor);
+    return this.http.put<Donor>(`${this.apiServerUrl}/donor/edit`, donor);
   }
 
   public deleteDonor(uuid: string): Observable<void> {

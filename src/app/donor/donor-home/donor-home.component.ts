@@ -1,8 +1,10 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { AccountService } from '@app/_services/account.service';
 import { LocationService } from '@app/_services/location.service';
 import { DonorService } from '@app/_services/users/donor.service';
+import { EditDonorDialogComponent } from './edit-donor-dialog/edit-donor-dialog.component';
 
 @Component({
   selector: 'app-donor-home',
@@ -16,6 +18,7 @@ export class DonorHomeComponent {// send donor as parameter to this component
   constructor(
     private locationService: LocationService,
     private donorService: DonorService,
+    private accountService: AccountService,
     public dialog: MatDialog
   ) { }
 
@@ -35,7 +38,14 @@ export class DonorHomeComponent {// send donor as parameter to this component
   }
 
   public openEditDonorDialog(): void {
+    let donor = localStorage.getItem('user')!;
+    const dialogRef = this.dialog.open(EditDonorDialogComponent, {
+      data: JSON.parse(donor)
+    });
 
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+    });
   }
 
   private getLocations(): void {

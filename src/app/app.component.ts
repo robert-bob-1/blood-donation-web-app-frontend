@@ -16,30 +16,3 @@ export class AppComponent{
               private accountService: AccountService) {}
 
 }
-
-// public ngOnInit() {
-//   // this.loginUser('t', 't');
-// }
-
-// public loginUser(email: string, password: string): void {
-  //   this.accountService.login(email, password).subscribe(
-  //     (response: User) => {
-  //       console.log(response);
-  //       console.log(localStorage.getItem('user'));
-  //     }, (error: HttpErrorResponse) => {
-  //       alert(error.message);
-  //     }
-  //   );
-  // }
-
-  // public getDonorByEmail(email: string): void {
-
-  //   this.donorService.getDonorByEmail(email).subscribe(
-  //     (response: Donor) => {
-  //       // this.currentDonor = response;
-  //     },
-  //     (error: HttpErrorResponse) => {
-  //       alert(error.message);
-  //     }
-  //   );
-  // }

@@ -31,6 +31,5 @@ export class LoginComponent {
     }
 
     this.accountService.login(this.f['email'].value, this.f['password'].value);
-    // console.log(localStorage.getItem('user'));
   }
 }

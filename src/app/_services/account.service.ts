@@ -15,7 +15,7 @@ import { DoctorService } from './users/doctor.service';
 @Injectable({ providedIn: 'root' })
 export class AccountService {
     // private userSubject: BehaviorSubject<User | null>;
-    // public user: Observable<User | null>;
+    public user: any;
 
     constructor(
         private router: Router,
@@ -33,6 +33,8 @@ export class AccountService {
             if (user.userType === 'donor') {
                 this.donorService.getDonorByEmail(email).subscribe((donor) => {
                     localStorage.setItem('user', JSON.stringify(donor));
+                    console.log(donor);
+                    console.log(localStorage.getItem('user'));
                     this.router.navigate(['/donor']);
                 });
             }
