@@ -24,7 +24,7 @@ export class DoctorService {
     return this.http.post<Doctor>(`${this.apiServerUrl}/doctor/register`, doctor);
   }
 
-  public editDoctor(doctor: Doctor): Observable<Doctor> {
+  public updateDoctor(doctor: Doctor): Observable<Doctor> {
     return this.http.put<Doctor>(`${this.apiServerUrl}/doctor/edit`, doctor);
   }
 

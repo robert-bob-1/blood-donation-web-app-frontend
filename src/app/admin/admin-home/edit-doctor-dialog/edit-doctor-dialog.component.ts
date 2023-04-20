@@ -30,7 +30,7 @@ export class EditDoctorDialogComponent {
   public onEditDoctor(): void {
     const updatedDoctor = _.merge(this.data, this.form.value);
 
-    this.doctorService.editDoctor(updatedDoctor).subscribe(
+    this.doctorService.updateDoctor(updatedDoctor).subscribe(
       (response: any) => {
         console.log(response);
       },
