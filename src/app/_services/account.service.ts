@@ -36,7 +36,6 @@ export class AccountService {
     login(email: string, password: string): Observable<User> {
         const user = this.userService.getUserByEmailAndPassword(email, password);
         user.subscribe((user) => {
-            this.isUserAuthenticated = true;
             if (user.userType === 'donor') {
                 this.donorService.getDonorByEmail(email).subscribe((donor) => {
                     localStorage.setItem('user', JSON.stringify(donor));
@@ -76,18 +75,7 @@ export class AccountService {
         this.authStatusListener.next(false);
     }
 
-    // register(user: User) {
-    //     return this.http.post(`${environment.apiUrl}/users/register`, user);
-    // }
-
-    // getAll() {
-    //     return this.http.get<User[]>(`${environment.apiUrl}/users`);
-    // }
-
-    // getById(id: string) {
-    //     return this.http.get<User>(`${environment.apiUrl}/users/${id}`);
-    // }
-
+  
     // update(id: string, params: any) {
     //     return this.http.put(`${environment.apiUrl}/users/${id}`, params)
     //         .pipe(map(x => {
@@ -99,17 +87,6 @@ export class AccountService {
 
     //                 // publish updated user to subscribers
     //                 this.userSubject.next(user);
-    //             }
-    //             return x;
-    //         }));
-    // }
-
-    // delete(id: string) {
-    //     return this.http.delete(`${environment.apiUrl}/users/${id}`)
-    //         .pipe(map(x => {
-    //             // auto logout if the logged in user deleted their own record
-    //             if (id == this.userValue?.id) {
-    //                 this.logout();
     //             }
     //             return x;
     //         }));

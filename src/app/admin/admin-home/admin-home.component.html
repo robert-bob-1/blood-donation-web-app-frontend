@@ -5,10 +5,8 @@
     </button>
 </div>
 
-<div class="table-container">
-    <table mat-table 
-        [dataSource]="doctors" 
-        class="mat-elevation-z8">
+<div class="table-container mat-elevation-z8" tabindex="0">
+    <table mat-table [dataSource]="doctors">
 
         <ng-container matColumnDef="email">
             <th mat-header-cell *matHeaderCellDef> Email </th>
@@ -45,7 +43,7 @@
             </td>
         </ng-container>
 
-        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
         <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 
     </table>

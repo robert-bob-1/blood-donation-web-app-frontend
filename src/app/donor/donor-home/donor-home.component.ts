@@ -15,7 +15,7 @@ import { Donor } from '@app/_models/donor';
 export class DonorHomeComponent {// send donor as parameter to this component
   public donor!: Donor;
   public locations!: Location[];
-  public displayedColumns: string[] = [ 'name' ];
+  public displayedColumns: string[] = [ 'name', 'actions' ];
 
   constructor(
     private locationService: LocationService,

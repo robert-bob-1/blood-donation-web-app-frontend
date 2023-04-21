@@ -18,14 +18,14 @@ export class DonorService {
   }
  
   public registerDonor(donor: DonorCreateDTO): Observable<Donor> {
-    return this.http.post<Donor>(`${this.apiServerUrl}/donor/register`, donor);
+    return this.http.post<Donor>(`${this.apiServerUrl}/donor`, donor);
   }
 
   public updateDonor(donor: Donor): Observable<Donor> {
-    return this.http.put<Donor>(`${this.apiServerUrl}/donor/edit`, donor);
+    return this.http.put<Donor>(`${this.apiServerUrl}/donor`, donor);
   }
 
   public deleteDonor(uuid: string): Observable<void> {
-    return this.http.delete<void>(`${this.apiServerUrl}/donor/delete/${uuid}`);
+    return this.http.delete<void>(`${this.apiServerUrl}/donor/${uuid}`);
   }
 }

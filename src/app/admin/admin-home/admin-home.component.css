@@ -3,13 +3,15 @@ button {
     border-radius: 10px;
     cursor: pointer;
 }
-table {
+/* table {
     width: 80%;
-}
+} */
 
 .table-container {
-    padding: 40px;
-    padding-top: 0px;
+    /* padding: 40px;
+    padding-top: 0px; */
+    height: 400px;  
+    overflow: auto;
 }
 
 .button-container {

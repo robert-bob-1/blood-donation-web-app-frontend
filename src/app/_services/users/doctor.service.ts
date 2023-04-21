@@ -17,18 +17,18 @@ export class DoctorService {
   }
 
   public getAllDoctors(): Observable<Doctor[]> {
-    return this.http.get<Doctor[]>(`${this.apiServerUrl}/doctor/all`);
+    return this.http.get<Doctor[]>(`${this.apiServerUrl}/doctor`);
   }
 
   public registerDoctor(doctor: Doctor): Observable<Doctor> {
-    return this.http.post<Doctor>(`${this.apiServerUrl}/doctor/register`, doctor);
+    return this.http.post<Doctor>(`${this.apiServerUrl}/doctor`, doctor);
   }
 
   public updateDoctor(doctor: Doctor): Observable<Doctor> {
-    return this.http.put<Doctor>(`${this.apiServerUrl}/doctor/edit`, doctor);
+    return this.http.put<Doctor>(`${this.apiServerUrl}/doctor`, doctor);
   }
 
   public deleteDoctor(doctorId: string): Observable<void> {
-    return this.http.delete<void>(`${this.apiServerUrl}/doctor/delete/${doctorId}`);
+    return this.http.delete<void>(`${this.apiServerUrl}/doctor/${doctorId}`);
   }
 }
