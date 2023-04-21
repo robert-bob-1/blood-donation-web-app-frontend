@@ -1,7 +1,8 @@
 <mat-toolbar color="primary">
     Blood Donation App
     <div class="button-container">
-        <button mat-button>Logout</button>
+        <button mat-button *ngIf="isUserAuthenticated"
+            (click)="onLogout()">Logout</button>
     </div>
 
 </mat-toolbar>
