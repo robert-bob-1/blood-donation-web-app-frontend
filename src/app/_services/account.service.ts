@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Donor } from '../_models/donor';
 import { User } from '../_models/user';
@@ -16,6 +16,8 @@ import { DoctorService } from './users/doctor.service';
 export class AccountService {
     // private userSubject: BehaviorSubject<User | null>;
     public user: any;
+    public isUserAuthenticated: boolean = false;
+    private authStatusListener = new Subject<boolean>();
 
     constructor(
         private router: Router,
@@ -26,10 +28,15 @@ export class AccountService {
         private doctorService: DoctorService
     ) {}
 
+    getAuthStatusListener() {
+        return this.authStatusListener.asObservable();
+    }
+
 
     login(email: string, password: string): Observable<User> {
         const user = this.userService.getUserByEmailAndPassword(email, password);
         user.subscribe((user) => {
+            this.isUserAuthenticated = true;
             if (user.userType === 'donor') {
                 this.donorService.getDonorByEmail(email).subscribe((donor) => {
                     localStorage.setItem('user', JSON.stringify(donor));
@@ -50,6 +57,10 @@ export class AccountService {
                     this.router.navigate(['/doctor']);
                 });
             }
+        });
+
+        user.subscribe( (user) => {
+            this.authStatusListener.next(true);
         });
         return user;
     }
