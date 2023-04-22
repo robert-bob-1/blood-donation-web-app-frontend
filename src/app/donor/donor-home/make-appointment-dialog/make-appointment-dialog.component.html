@@ -12,11 +12,12 @@
             formControlName="locationName"
             [matAutocomplete]="auto"
             >
-          <mat-autocomplete #auto="matAutocomplete" isOpen="false">
-            <mat-option *ngFor="let location of locations" [value]="location.name">
+          <mat-autocomplete #auto="matAutocomplete">
+            <mat-option *ngFor="let location of filteredLocations" [value]="location">
               {{location.name}}
             </mat-option>
           </mat-autocomplete>
+          <!-- <mat-error *ngIf="form.get('locationName')?.invalid">Invalid location</mat-error> -->
         </mat-form-field>
 
         <mat-form-field appearance="fill">
