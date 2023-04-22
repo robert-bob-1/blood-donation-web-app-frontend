@@ -15,6 +15,10 @@ export class MakeAppointmentDialogComponent {
   public locations: Location[] = [];
   public selectedLocationName!: string;
 
+  //for datepicker
+  public minDate = new Date();
+
+
   public form: FormGroup = new FormGroup({
     locationName: new FormControl( this.data.location.name, [Validators.required]),
     datePicker: new FormControl('', [Validators.required]),
@@ -27,8 +31,10 @@ export class MakeAppointmentDialogComponent {
 
   ngOnInit() {
     this.locations = this.data.locations;
-    
+    this.configureDatePicker();
   }
 
+  private configureDatePicker() {
+  }
 
 }

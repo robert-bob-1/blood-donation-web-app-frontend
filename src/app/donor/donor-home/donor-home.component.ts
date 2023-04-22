@@ -59,7 +59,8 @@ export class DonorHomeComponent {// send donor as parameter to this component
         donor: this.donor,
         locations: this.locations,
         location: location
-      }
+      },
+      autoFocus: false
       });
       dialogRef.afterClosed().subscribe(result => {      });
   }
