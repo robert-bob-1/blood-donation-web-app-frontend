@@ -14,7 +14,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MakeAppointmentDialogComponent } from './donor-home/make-appointment-dialog/make-appointment-dialog.component';
 import { MatSelectModule } from '@angular/material/select';
 import { MatDatepickerModule } from '@angular/material/datepicker';
-import { MatNativeDateModule } from '@angular/material/core';
+import { MAT_DATE_LOCALE, MatNativeDateModule } from '@angular/material/core';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 
 @NgModule({
@@ -42,6 +42,7 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
   ],
   providers: [
     MatDatepickerModule,
+    { provide: MAT_DATE_LOCALE, useValue: 'en-GB' }
   ]
 })
 export class DonorModule { }

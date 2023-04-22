@@ -6,6 +6,8 @@ import { Donor } from '@app/_models/donor';
 import { AppointmentService } from '@app/_services/appointment.service';
 import { DonorService } from '@app/_services/users/donor.service';
 import { Location } from '@app/_models/location';
+import { MAT_DATE_LOCALE } from '@angular/material/core';
+
 @Component({
   selector: 'app-make-appointment-dialog',
   templateUrl: './make-appointment-dialog.component.html',
@@ -16,7 +18,7 @@ export class MakeAppointmentDialogComponent {
   public selectedLocationName!: string;
 
   //for datepicker
-  public minDate = new Date();
+  public minDate!: Date;
 
 
   public form: FormGroup = new FormGroup({
@@ -27,14 +29,37 @@ export class MakeAppointmentDialogComponent {
   constructor (
     private appointmentService: AppointmentService,
     @Inject(MAT_DIALOG_DATA) public data: any,
-  ) { }
-
-  ngOnInit() {
-    this.locations = this.data.locations;
-    this.configureDatePicker();
+  ) { 
   }
 
-  private configureDatePicker() {
+  ngOnInit() {
+    this.minDate = new Date();
+    this.locations = this.data.locations;
+    this.filterAvailableDates();
+  }
+
+  onMakeAppointment() {
+    const appointment: Appointment = {
+      uuid: '',
+      donorId: this.data.donor.id,
+      locationId: this.data.location.id,
+      doctorId: '',
+      date: this.form.value.datePicker,
+      time: ''
+    }
+
+    this.appointmentService.createAppointment(appointment).subscribe(
+      (response: any) => {
+        console.log(response);
+      },
+      (error: any) => {
+        console.log(error);
+      }
+    );
+  }
+
+  private filterAvailableDates() {
+    
   }
 
 }
