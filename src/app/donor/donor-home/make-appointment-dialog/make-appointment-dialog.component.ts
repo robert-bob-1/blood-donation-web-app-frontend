@@ -16,7 +16,7 @@ import { Observable } from 'rxjs/internal/Observable';
 })
 export class MakeAppointmentDialogComponent {
   public locations: Location[] = [];
-  public filteredLocations!: Location[];
+  public filteredLocations: Location[] = [];
   public selectedLocation!: Location;
 
   //for datepicker
@@ -24,8 +24,7 @@ export class MakeAppointmentDialogComponent {
 
 
   public form: FormGroup = new FormGroup({
-    locationName: new FormControl( this.data.location.name, [Validators.required, 
-                                  this.locationValidator(this.locations.map(location => location.name))]),
+    locationName: new FormControl( this.data.location.name, [Validators.required]),
     datePicker: new FormControl('', [Validators.required]),
   });
 
@@ -38,21 +37,23 @@ export class MakeAppointmentDialogComponent {
   ngOnInit() {
     this.minDate = new Date();
     this.locations = this.data.locations;
-    // this.filteredLocations = 
+
+    this.form.controls['locationName'].addValidators(this.locationValidator(this.locations.map( location => location.name)));
+
     this.form.controls['locationName'].valueChanges.subscribe(
       (value: string) => {
+        console.log(this.locations)
         this.filteredLocations = this.locations.filter(location => location.name.includes(value));
       }
     )
-
     this.filterAvailableDates();
   }
 
   onMakeAppointment() {
     const appointment: Appointment = {
       uuid: '',
-      donorId: this.data.donor.id,
-      locationId: this.data.location.id,
+      donorId: this.data.donor.uuid,
+      locationId: this.selectedLocation.uuid,
       doctorId: '',
       date: this.form.value.datePicker,
       time: ''
@@ -71,6 +72,7 @@ export class MakeAppointmentDialogComponent {
   locationValidator(locations: string[]): ValidatorFn {
     return (control: AbstractControl): { [key: string]: any } | null => {
       const location = control.value;
+      
       if (locations.indexOf(location) === -1) {
         return { 'invalidLocation': { location } };
       }

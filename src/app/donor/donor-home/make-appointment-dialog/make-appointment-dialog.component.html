@@ -13,7 +13,7 @@
             [matAutocomplete]="auto"
             >
           <mat-autocomplete #auto="matAutocomplete">
-            <mat-option *ngFor="let location of filteredLocations" [value]="location">
+            <mat-option *ngFor="let location of filteredLocations" [value]="location.name">
               {{location.name}}
             </mat-option>
           </mat-autocomplete>
