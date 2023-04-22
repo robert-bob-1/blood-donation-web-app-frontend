@@ -1,6 +1,7 @@
 export interface Appointment{
     uuid: string;
-    datetime: string;
+    date: string;
+    time: string;
     donorId: string;
     locationId: string;
     doctorId: string;

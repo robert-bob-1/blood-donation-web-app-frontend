@@ -6,6 +6,7 @@ import { LocationService } from '@app/_services/location.service';
 import { DonorService } from '@app/_services/users/donor.service';
 import { EditDonorDialogComponent } from './edit-donor-dialog/edit-donor-dialog.component';
 import { Donor } from '@app/_models/donor';
+import { MakeAppointmentDialogComponent } from './make-appointment-dialog/make-appointment-dialog.component';
 
 @Component({
   selector: 'app-donor-home',
@@ -50,6 +51,17 @@ export class DonorHomeComponent {// send donor as parameter to this component
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
     });
+  }
+
+  public onMakeAppointment(location: Location): void {
+    const dialogRef = this.dialog.open(MakeAppointmentDialogComponent, {
+      data: { 
+        donor: this.donor,
+        locations: this.locations,
+        location: location
+      }
+      });
+      dialogRef.afterClosed().subscribe(result => {      });
   }
 
   private getLocations(): void {

@@ -24,7 +24,7 @@
             <th mat-header-cell *matHeaderCellDef></th>
             <td mat-cell *matCellDef="let row"> 
                 <button mat-button color="primary"
-                    >
+                    (click)="onMakeAppointment(row)">
                     Make Appointment
                     <mat-icon>edit</mat-icon>
                 </button>

@@ -11,14 +11,18 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
-
-
+import { MakeAppointmentDialogComponent } from './donor-home/make-appointment-dialog/make-appointment-dialog.component';
+import { MatSelectModule } from '@angular/material/select';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
 
 @NgModule({
   declarations: [
     DonorHomeComponent,
     LayoutComponent,
-    EditDonorDialogComponent
+    EditDonorDialogComponent,
+    MakeAppointmentDialogComponent
   ],
   imports: [
     CommonModule,
@@ -31,6 +35,13 @@ import { MatInputModule } from '@angular/material/input';
     MatDialogModule,
     MatButtonModule,
     MatIconModule,
+    MatSelectModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatAutocompleteModule,
+  ],
+  providers: [
+    MatDatepickerModule,
   ]
 })
 export class DonorModule { }
