@@ -10,6 +10,7 @@ import { MAT_DATE_LOCALE } from '@angular/material/core';
 import { Observable } from 'rxjs/internal/Observable';
 import { DatePipe } from '@angular/common';
 import { LocationService } from '@app/_services/location.service';
+import { Doctor } from '@app/_models/doctor';
 
 @Component({
   selector: 'app-make-appointment-dialog',
@@ -75,7 +76,7 @@ export class MakeAppointmentDialogComponent {
       id: '',
       donor: this.data.donor,
       location: this.selectedLocation,
-      doctorId: '',
+      doctor: {} as Doctor,
       date: date,
       time: '00:00:00'
     }

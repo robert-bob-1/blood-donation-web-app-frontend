@@ -42,7 +42,16 @@ export class DoctorHomeComponent {
   }
 
   onConfirmAppointment(appointment: Appointment): void {
-
+    appointment.doctor = this.doctor;
+    this.appointmentService.confirmAppointment(appointment).subscribe(
+      (response: Appointment) => {
+        console.log(response);
+        this.getAppointmentsAtLocation(appointment.location.id);
+      },
+      (error: HttpErrorResponse) => {
+        alert(error.message);
+      }
+    );
   }
 
   onSelectLocation(location: Location): void {

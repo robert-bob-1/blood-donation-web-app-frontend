@@ -27,4 +27,8 @@ export class AppointmentService {
   public deleteAppointment(appointmentId: string): Observable<any> {
     return this.http.delete(`${this.apiServerUrl}/appointment/${appointmentId}`);
   }
+
+  public confirmAppointment(appointment: Appointment): Observable<any> {
+    return this.http.put(`${this.apiServerUrl}/appointment`, appointment, {responseType: 'text'});
+  }
 }
