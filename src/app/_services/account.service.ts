@@ -42,6 +42,7 @@ export class AccountService {
                     console.log(donor);
                     console.log(localStorage.getItem('user'));
                     this.router.navigate(['/donor']);
+                    console.log(donor)
                 });
             }
             else if (user.userType === 'admin') {

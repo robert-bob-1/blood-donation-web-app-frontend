@@ -1,6 +1,8 @@
+import { Donor } from "./donor";
+
 export interface Appointment{
     id: string;
-    userId: string;
+    donor: Donor;
     doctorId: string;
     locationId: string;
     date: string;

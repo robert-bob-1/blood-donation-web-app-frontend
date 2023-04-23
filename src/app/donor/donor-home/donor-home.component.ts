@@ -8,6 +8,7 @@ import { EditDonorDialogComponent } from './edit-donor-dialog/edit-donor-dialog.
 import { Donor } from '@app/_models/donor';
 import { MakeAppointmentDialogComponent } from './make-appointment-dialog/make-appointment-dialog.component';
 import { Location } from '@app/_models/location';
+import { Appointment } from '@app/_models/appointment';
 @Component({
   selector: 'app-donor-home',
   templateUrl: './donor-home.component.html',
@@ -15,8 +16,11 @@ import { Location } from '@app/_models/location';
 })
 export class DonorHomeComponent {// send donor as parameter to this component
   public donor!: Donor;
+
   public locations!: Location[];
   public displayedColumns: string[] = [ 'name', 'actions' ];
+
+  public appointments: Appointment[] = [];
 
   constructor(
     private locationService: LocationService,
@@ -76,7 +80,7 @@ export class DonorHomeComponent {// send donor as parameter to this component
       }
     );
   }
-  
+
 
 
 }

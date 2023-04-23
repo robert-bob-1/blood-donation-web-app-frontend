@@ -73,7 +73,7 @@ export class MakeAppointmentDialogComponent {
 
     const appointment: Appointment = {
       id: '',
-      userId: this.data.donor.id,
+      donor: this.data.donor,
       locationId: this.selectedLocation.id,
       doctorId: '',
       date: date,
@@ -132,12 +132,7 @@ export class MakeAppointmentDialogComponent {
         (response: any[][]) => {
           let aux = response.filter( dateCapacity => dateCapacity[1] <= 0)
           this.busyDates = aux.map( dateCapacity => new Date(dateCapacity[0]));
-          console.log("location " + this.selectedLocation.name)
-          // console.log(response)
-          // console.log(this.busyDates)
-        //   this.busyDatesFilter = (d: Date | null): boolean => {
-        //     return !this.busyDates.find( busyDate => busyDate.toDateString() === d?.toDateString());
-        //   }
+          console.log("location " + this.selectedLocation.name);
         });
     }
     
