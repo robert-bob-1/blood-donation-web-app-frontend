@@ -20,6 +20,10 @@ export class AppointmentService {
     return this.http.get<Appointment[]>(`${this.apiServerUrl}/appointment/${donorId}`);
   }
 
+  public getAppointmentsAtLocation(locationId: string): Observable<Appointment[]> {
+    return this.http.get<Appointment[]>(`${this.apiServerUrl}/appointment/location/${locationId}`);
+  }
+
   public deleteAppointment(appointmentId: string): Observable<any> {
     return this.http.delete(`${this.apiServerUrl}/appointment/${appointmentId}`);
   }

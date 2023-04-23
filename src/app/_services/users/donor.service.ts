@@ -25,7 +25,7 @@ export class DonorService {
     return this.http.put<Donor>(`${this.apiServerUrl}/donor`, donor);
   }
 
-  public deleteDonor(uuid: string): Observable<void> {
-    return this.http.delete<void>(`${this.apiServerUrl}/donor/${uuid}`);
+  public deleteDonor(id: string): Observable<void> {
+    return this.http.delete<void>(`${this.apiServerUrl}/donor/${id}`);
   }
 }
