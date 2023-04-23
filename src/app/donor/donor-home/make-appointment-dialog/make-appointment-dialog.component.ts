@@ -97,6 +97,8 @@ export class MakeAppointmentDialogComponent {
 
   locationValidator(locations: string[]): ValidatorFn {
     return (control: AbstractControl): { [key: string]: any } | null => {
+      this.form.controls['datePicker'].updateValueAndValidity();
+      
       const location = control.value;
       
       if (locations.indexOf(location) === -1) {
