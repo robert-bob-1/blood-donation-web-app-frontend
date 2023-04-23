@@ -74,7 +74,7 @@ export class MakeAppointmentDialogComponent {
     const appointment: Appointment = {
       id: '',
       donor: this.data.donor,
-      locationId: this.selectedLocation.id,
+      location: this.selectedLocation,
       doctorId: '',
       date: date,
       time: '00:00:00'
@@ -132,7 +132,7 @@ export class MakeAppointmentDialogComponent {
         (response: any[][]) => {
           let aux = response.filter( dateCapacity => dateCapacity[1] <= 0)
           this.busyDates = aux.map( dateCapacity => new Date(dateCapacity[0]));
-          console.log("location " + this.selectedLocation.name);
+          // console.log("location " + this.selectedLocation.name);
         });
     }
     

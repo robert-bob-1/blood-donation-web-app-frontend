@@ -19,4 +19,8 @@ export class AppointmentService {
   public getAllAppointmentsOfDonor(donorId: string): Observable<Appointment[]> {
     return this.http.get<Appointment[]>(`${this.apiServerUrl}/appointment/${donorId}`);
   }
+
+  public deleteAppointment(appointmentId: string): Observable<any> {
+    return this.http.delete(`${this.apiServerUrl}/appointment/${appointmentId}`);
+  }
 }
