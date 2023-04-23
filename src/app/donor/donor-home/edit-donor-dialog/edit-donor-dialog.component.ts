@@ -44,12 +44,6 @@ export class EditDonorDialogComponent {
   }
 
   private populateForm(donor: Donor) {
-    // let editableDonor = {
-    //   email: donor.email,
-    //   password: donor.password,
-    //   firstName: donor.firstName,
-    //   lastName: donor.lastName
-    // }
     let editableDonor = {
       email: '',
       password: '',

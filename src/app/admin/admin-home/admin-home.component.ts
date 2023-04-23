@@ -54,7 +54,7 @@ export class AdminHomeComponent {
   }
 
   public deleteDoctor(doctor: Doctor): void {
-    this.doctorService.deleteDoctor(doctor.uuid).subscribe(
+    this.doctorService.deleteDoctor(doctor.id).subscribe(
       (response: void) => {
         console.log(response);
         this.getDoctors();

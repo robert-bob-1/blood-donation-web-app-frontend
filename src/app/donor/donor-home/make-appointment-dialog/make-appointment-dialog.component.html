@@ -11,6 +11,7 @@
             matInput
             formControlName="locationName"
             [matAutocomplete]="auto"
+            (blur)="onLocationBlur()"
             >
           <mat-autocomplete #auto="matAutocomplete">
             <mat-option *ngFor="let location of filteredLocations" [value]="location.name">
@@ -25,10 +26,11 @@
           <input matInput 
             [min]="minDate" 
             [matDatepicker]="picker" 
+            [matDatepickerFilter]="busyDatesFilter"
             formControlName="datePicker" />
           <mat-hint>DD/MM/YYYY</mat-hint>
           <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
-          <mat-datepicker #picker></mat-datepicker>
+          <mat-datepicker #picker ></mat-datepicker>
         </mat-form-field>
 
         <!-- (click)="onUpdateDonor()" -->

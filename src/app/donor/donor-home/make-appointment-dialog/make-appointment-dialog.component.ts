@@ -8,6 +8,8 @@ import { DonorService } from '@app/_services/users/donor.service';
 import { Location } from '@app/_models/location';
 import { MAT_DATE_LOCALE } from '@angular/material/core';
 import { Observable } from 'rxjs/internal/Observable';
+import { DatePipe } from '@angular/common';
+import { LocationService } from '@app/_services/location.service';
 
 @Component({
   selector: 'app-make-appointment-dialog',
@@ -21,42 +23,61 @@ export class MakeAppointmentDialogComponent {
 
   //for datepicker
   public minDate!: Date;
+  public busyDates: Date[] = [];
+  public busyDatesFilter!: (d: Date | null) => boolean;
 
 
   public form: FormGroup = new FormGroup({
-    locationName: new FormControl( this.data.location.name, [Validators.required]),
+    locationName: new FormControl( '', [Validators.required]),
     datePicker: new FormControl('', [Validators.required]),
   });
 
   constructor (
     private appointmentService: AppointmentService,
+    private locationService: LocationService,
     @Inject(MAT_DIALOG_DATA) public data: any,
+    public datepipe: DatePipe
   ) { 
   }
 
   ngOnInit() {
-    this.minDate = new Date();
     this.locations = this.data.locations;
+    this.setLocationName();
+
+    this.minDate = new Date();
+    this.setInvalidDates();
+
+    this.busyDatesFilter = (d: Date | null): boolean => {
+      return !this.busyDates.find( busyDate => busyDate.toDateString() === d?.toDateString());
+    }
+
 
     this.form.controls['locationName'].addValidators(this.locationValidator(this.locations.map( location => location.name)));
+    this.form.controls['datePicker'].addValidators(this.dateValidator(this.busyDatesFilter));
 
     this.form.controls['locationName'].valueChanges.subscribe(
       (value: string) => {
-        console.log(this.locations)
         this.filteredLocations = this.locations.filter(location => location.name.includes(value));
       }
     )
-    this.filterAvailableDates();
+
+    this.form.controls['datePicker'].statusChanges.subscribe(
+      (status: string) => {
+        console.log(status);
+      }
+    );
   }
 
   onMakeAppointment() {
+    const date: string = this.datepipe.transform(this.form.value.datePicker, 'yyyy-MM-dd')!;
+
     const appointment: Appointment = {
-      uuid: '',
-      donorId: this.data.donor.uuid,
-      locationId: this.selectedLocation.uuid,
+      id: '',
+      userId: this.data.donor.id,
+      locationId: this.selectedLocation.id,
       doctorId: '',
-      date: this.form.value.datePicker,
-      time: ''
+      date: date,
+      time: '00:00:00'
     }
 
     this.appointmentService.createAppointment(appointment).subscribe(
@@ -67,6 +88,11 @@ export class MakeAppointmentDialogComponent {
         console.log(error);
       }
     );
+  }
+
+  onLocationBlur() {
+    this.selectedLocation = this.locations.find(location => location.name === this.form.value.locationName)!;
+    this.setInvalidDates();
   }
 
   locationValidator(locations: string[]): ValidatorFn {
@@ -80,7 +106,38 @@ export class MakeAppointmentDialogComponent {
     };
   }
 
-  private filterAvailableDates() {
+  dateValidator(busyDatesFilter: any): ValidatorFn {
+    return (control: AbstractControl): { [key: string]: any } | null => {
+      const date = control.value;
+
+      if (!busyDatesFilter(date)) {
+        return { 'invalidDate': { date } };
+      }
+      return null;
+    };
+  }
+
+  private setLocationName() {
+    if (this.data.location) {
+      this.form.controls['locationName'].setValue(this.data.location.name);
+      this.selectedLocation = this.data.location;
+    }
+  }
+
+  private setInvalidDates() {
+    if (this.selectedLocation) {
+      this.locationService.getBusyDates(this.selectedLocation).subscribe(
+        (response: any[][]) => {
+          let aux = response.filter( dateCapacity => dateCapacity[1] <= 0)
+          this.busyDates = aux.map( dateCapacity => new Date(dateCapacity[0]));
+          console.log("location " + this.selectedLocation.name)
+          // console.log(response)
+          // console.log(this.busyDates)
+        //   this.busyDatesFilter = (d: Date | null): boolean => {
+        //     return !this.busyDates.find( busyDate => busyDate.toDateString() === d?.toDateString());
+        //   }
+        });
+    }
     
   }
 

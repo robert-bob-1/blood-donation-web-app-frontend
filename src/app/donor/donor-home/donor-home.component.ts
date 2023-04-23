@@ -7,7 +7,7 @@ import { DonorService } from '@app/_services/users/donor.service';
 import { EditDonorDialogComponent } from './edit-donor-dialog/edit-donor-dialog.component';
 import { Donor } from '@app/_models/donor';
 import { MakeAppointmentDialogComponent } from './make-appointment-dialog/make-appointment-dialog.component';
-
+import { Location } from '@app/_models/location';
 @Component({
   selector: 'app-donor-home',
   templateUrl: './donor-home.component.html',
@@ -32,7 +32,7 @@ export class DonorHomeComponent {// send donor as parameter to this component
   }
 
   public deleteAccount(): void {
-    this.donorService.deleteDonor(this.donor.uuid).subscribe(
+    this.donorService.deleteDonor(this.donor.id).subscribe(
       (response: void) => {
         console.log(response);
         this.accountService.logout();

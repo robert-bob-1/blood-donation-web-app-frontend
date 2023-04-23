@@ -1,5 +1,5 @@
 export interface Location {
-    uuid: string;
+    id: string;
     name: string;
     capacity: number;
 }

@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 import { DonorHomeComponent } from './donor-home/donor-home.component';
 import { LayoutComponent } from './layout/layout.component';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -42,7 +42,8 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
   ],
   providers: [
     MatDatepickerModule,
-    { provide: MAT_DATE_LOCALE, useValue: 'en-GB' }
+    { provide: MAT_DATE_LOCALE, useValue: 'en-GB' },
+    DatePipe
   ]
 })
 export class DonorModule { }
