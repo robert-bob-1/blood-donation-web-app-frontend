@@ -54,7 +54,7 @@
             </table>
 
         </section>
-        <mat-paginator 
+        <mat-paginator *ngIf="requirePaginator"
             itemsPerPageLabel=""
             hidePageSize="true"
             [length]="totalElements" 

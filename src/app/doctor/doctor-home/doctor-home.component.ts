@@ -24,6 +24,9 @@ export class DoctorHomeComponent {
   public currentPage: number = 0;
   public totalPages: number = 1;
   public totalElements: number = 0;
+
+  public requirePaginator: boolean = false;
+
   constructor(
     private locationService: LocationService,
     private appointmentService: AppointmentService
@@ -62,10 +65,12 @@ export class DoctorHomeComponent {
 
   onSelectLocation(location: Location): void {
     console.log(location);
+    this.requirePaginator = false;
     this.getAppointmentsAtLocation(location.id);
   }
 
   onShowTodayAppointments(event: Event): void {
+    this.requirePaginator = false;
     // this.appointmentService.getTodayAppointments(this.doctor.id).subscribe(
     //   (response: Appointment[]) => {
     //     this.appointments = response;
@@ -77,6 +82,7 @@ export class DoctorHomeComponent {
   }
 
   onShowAllAppointments(event: Event): void {
+    this.requirePaginator = true;
     this.getAppointments();
   }
 
