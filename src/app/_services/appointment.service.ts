@@ -38,4 +38,8 @@ export class AppointmentService {
         .set('page', pageNumber.toString())
         .set('size', pageSize.toString())});
   }
+
+  public getTodayAppointments(): Observable<Appointment[]> {
+    return this.http.get<Appointment[]>(`${this.apiServerUrl}/appointment/today`);
+  }
 }

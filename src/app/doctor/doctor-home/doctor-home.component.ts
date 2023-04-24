@@ -71,14 +71,14 @@ export class DoctorHomeComponent {
 
   onShowTodayAppointments(event: Event): void {
     this.requirePaginator = false;
-    // this.appointmentService.getTodayAppointments(this.doctor.id).subscribe(
-    //   (response: Appointment[]) => {
-    //     this.appointments = response;
-    //   },
-    //   (error: HttpErrorResponse) => {
-    //     alert(error.message);
-    //   }
-    // );
+    this.appointmentService.getTodayAppointments().subscribe(
+      (response: Appointment[]) => {
+        this.appointments = response;
+      },
+      (error: HttpErrorResponse) => {
+        alert(error.message);
+      }
+    );
   }
 
   onShowAllAppointments(event: Event): void {
