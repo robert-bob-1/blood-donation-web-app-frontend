@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Appointment } from '@app/_models/appointment';
 import { environment } from '@environments/environment';
@@ -30,5 +30,12 @@ export class AppointmentService {
 
   public confirmAppointment(appointment: Appointment): Observable<any> {
     return this.http.put(`${this.apiServerUrl}/appointment`, appointment, {responseType: 'text'});
+  }
+
+  public getAppointments(pageNumber: number, pageSize: number): Observable<any> {
+    return this.http.get<any>(`${this.apiServerUrl}/appointment/paginated`, {
+      params: new HttpParams()
+        .set('page', pageNumber.toString())
+        .set('size', pageSize.toString())});
   }
 }

@@ -19,6 +19,10 @@ export class DoctorHomeComponent {
 
   public appointments: Appointment[] = [];
   public appointmentsDisplayedColumns: string[] = [ 'locationName', 'date', 'doctorName', 'actions' ];
+
+  public pageSize: number = 10;
+  public currentPage: number = 0;
+  public totalPages: number = 1;
   constructor(
     private locationService: LocationService,
     private appointmentService: AppointmentService
@@ -59,6 +63,39 @@ export class DoctorHomeComponent {
     this.getAppointmentsAtLocation(location.id);
   }
 
+  onShowTodayAppointments(event: Event): void {
+    // this.appointmentService.getTodayAppointments(this.doctor.id).subscribe(
+    //   (response: Appointment[]) => {
+    //     this.appointments = response;
+    //   },
+    //   (error: HttpErrorResponse) => {
+    //     alert(error.message);
+    //   }
+    // );
+  }
+
+  onShowAllAppointments(event: Event): void {
+    this.getAppointments();
+  }
+
+  onPageChange(pageNumber: number): void {
+    this.currentPage = pageNumber;
+    this.getAppointments();
+  }
+
+  private getAppointments(): void {
+    this.appointmentService.getAppointments(this.currentPage, this.pageSize).subscribe(
+      (response: any) => {
+        this.appointments = response.content;
+        this.totalPages = response.totalPages;
+        console.log(this.appointments)
+      },
+      (error: HttpErrorResponse) => {
+        alert(error.message);
+      }
+    )
+  }
+
   private getAppointmentsAtLocation(locationId: string): void {
     this.appointmentService.getAppointmentsAtLocation(locationId).subscribe(
       (response: Appointment[]) => {
@@ -69,4 +106,6 @@ export class DoctorHomeComponent {
       }
     );
   }
+
+
 }
