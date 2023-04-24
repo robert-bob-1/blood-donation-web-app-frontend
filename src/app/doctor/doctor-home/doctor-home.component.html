@@ -56,7 +56,8 @@
         </section>
         <mat-paginator 
             itemsPerPageLabel=""
-            [length]="appointments.length" 
+            hidePageSize="true"
+            [length]="totalElements" 
             [pageSize]="pageSize"
             [pageIndex]="currentPage"
             showFirstLastButtons

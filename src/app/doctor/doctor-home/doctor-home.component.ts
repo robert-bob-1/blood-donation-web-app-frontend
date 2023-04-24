@@ -23,6 +23,7 @@ export class DoctorHomeComponent {
   public pageSize: number = 10;
   public currentPage: number = 0;
   public totalPages: number = 1;
+  public totalElements: number = 0;
   constructor(
     private locationService: LocationService,
     private appointmentService: AppointmentService
@@ -50,7 +51,8 @@ export class DoctorHomeComponent {
     this.appointmentService.confirmAppointment(appointment).subscribe(
       (response: Appointment) => {
         console.log(response);
-        this.getAppointmentsAtLocation(appointment.location.id);
+        const index = this.appointments.findIndex((app) => app.id === response.id);
+        this.appointments[index].doctor = response.doctor;
       },
       (error: HttpErrorResponse) => {
         alert(error.message);
@@ -87,7 +89,7 @@ export class DoctorHomeComponent {
     this.appointmentService.getAppointments(this.currentPage, this.pageSize).subscribe(
       (response: any) => {
         this.appointments = response.content;
-        this.totalPages = response.totalPages;
+        this.totalElements = response.totalElements;
         console.log(this.appointments)
       },
       (error: HttpErrorResponse) => {
