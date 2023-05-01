@@ -1,6 +1,6 @@
 import { Component, Inject } from '@angular/core';
 import { FormGroup, FormControl, Validators, ValidatorFn, AbstractControl } from '@angular/forms';
-import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { Appointment } from '@app/_models/appointment';
 import { Donor } from '@app/_models/donor';
 import { AppointmentService } from '@app/_services/appointment.service';
@@ -37,6 +37,7 @@ export class MakeAppointmentDialogComponent {
     private appointmentService: AppointmentService,
     private locationService: LocationService,
     @Inject(MAT_DIALOG_DATA) public data: any,
+    private dialogRef: MatDialogRef<MakeAppointmentDialogComponent>,
     public datepipe: DatePipe
   ) { 
   }
@@ -82,6 +83,7 @@ export class MakeAppointmentDialogComponent {
 
     this.appointmentService.createAppointment(appointment).subscribe(
       (response: any) => {
+        this.dialogRef.close();
         console.log(response);
       },
       (error: any) => {

@@ -70,7 +70,7 @@ export class DonorHomeComponent {// send donor as parameter to this component
       },
       autoFocus: false
       });
-      dialogRef.afterClosed().subscribe(result => {      });
+      dialogRef.afterClosed().subscribe(result => {this.getAppointments();});
   }
 
   public onDeleteAppointment(appointment: Appointment): void {
