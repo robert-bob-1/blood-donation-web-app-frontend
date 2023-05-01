@@ -76,7 +76,6 @@ export class MakeAppointmentDialogComponent {
       id: '',
       donor: this.data.donor,
       location: this.selectedLocation,
-      doctor: {} as Doctor,
       date: date,
       time: '00:00:00'
     }
