@@ -34,12 +34,22 @@
         </mat-form-field>
 
         <mat-form-field appearance="fill">
-            <mat-label>Blood Type</mat-label>
-            <input matInput type="text" formControlName="bloodType" />
-            <mat-error *ngIf="this.form.invalid">
-                Field is invalid
-            </mat-error>
+          <mat-label>Blood Type</mat-label>
+          <input type="text"
+            placeholder="Choose your blood type"
+            aria-label="Number"
+            matInput
+            formControlName="bloodType"
+            [matAutocomplete]="auto">
+          <mat-autocomplete #auto="matAutocomplete">
+            <mat-option *ngFor="let bloodType of filteredBloodTypes" [value]="bloodType">
+              {{bloodType}}
+            </mat-option>
+          </mat-autocomplete>
         </mat-form-field>
+
+        <mat-checkbox color="primary" formControlName="smsNotification">SMS Notifications</mat-checkbox>
+        <mat-checkbox color="primary" formControlName="emailNotification">Email Notifications</mat-checkbox>
 
         <div>
             <button mat-raised-button color="primary"

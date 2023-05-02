@@ -17,7 +17,9 @@ export class EditDonorDialogComponent {
     password: new FormControl('', [Validators.required]),
     firstName: new FormControl('', [Validators.required]),
     lastName: new FormControl('', [Validators.required]),
-    bloodType: new FormControl('', [Validators.required])
+    bloodType: new FormControl('', [Validators.required]),
+    smsNotification: new FormControl(false),
+    emailNotification: new FormControl(false),
   });
 
   constructor (
@@ -30,7 +32,9 @@ export class EditDonorDialogComponent {
   }
 
   public onUpdateDonor(): void {
-    const updatedDonor = _.merge(this.data, this.form.value);
+    const updatedDonor: Donor = _.merge(this.data, this.form.value);
+    updatedDonor.emailNotification = updatedDonor.emailNotification ? 1 : 0;
+    updatedDonor.smsNotification = updatedDonor.smsNotification ? 1 : 0;
 
     this.donorService.updateDonor(updatedDonor).subscribe(
       (response: any) => {
@@ -49,13 +53,17 @@ export class EditDonorDialogComponent {
       password: '',
       firstName: '',
       lastName: '',
-      bloodType: ''
+      bloodType: '',
+      smsNotification: false,
+      emailNotification: false,
     };
     editableDonor.email = donor.email;
     editableDonor.password = donor.password;
     editableDonor.firstName = donor.firstName;
     editableDonor.lastName = donor.lastName;
     editableDonor.bloodType = donor.bloodType;
+    editableDonor.smsNotification = donor.smsNotification ? true : false;
+    editableDonor.emailNotification = donor.emailNotification ? true : false;
     this.form.setValue(editableDonor);
   }
 

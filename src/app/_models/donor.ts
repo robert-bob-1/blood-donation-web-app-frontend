@@ -6,4 +6,6 @@ export interface Donor {
     lastName: string;
     userType: string; 
     bloodType: string;
+    smsNotification: number;
+    emailNotification: number;
 }

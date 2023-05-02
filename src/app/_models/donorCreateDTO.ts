@@ -4,4 +4,6 @@ export interface DonorCreateDTO {
     firstName: string;
     lastName: string;
     bloodType: string;
+    smsNotification: number;
+    emailNotification: number;
 }
