@@ -34,6 +34,14 @@
         </mat-form-field>
 
         <mat-form-field appearance="fill">
+            <mat-label>Phone number</mat-label>
+            <input matInput type="text" formControlName="phoneNumber" />
+            <mat-error *ngIf="this.form.invalid">
+                Phone number is invalid
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
           <mat-label>Blood Type</mat-label>
           <input type="text"
             placeholder="Choose your blood type"

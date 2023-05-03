@@ -8,4 +8,5 @@ export interface Donor {
     bloodType: string;
     smsNotification: number;
     emailNotification: number;
+    phoneNumber: string;
 }

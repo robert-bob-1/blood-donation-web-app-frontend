@@ -50,7 +50,9 @@ export class MakeAppointmentDialogComponent {
     this.setInvalidDates();
 
     this.busyDatesFilter = (d: Date | null): boolean => {
-      return !this.busyDates.find( busyDate => busyDate.toDateString() === d?.toDateString());
+      if (!d) return false;
+      const d1 = new Date(d!.getFullYear(), d!.getMonth(), d!.getDate());
+      return !this.busyDates.find( busyDate => busyDate.toDateString() === d1.toDateString());
     }
 
 

@@ -34,6 +34,14 @@
             </mat-error>
         </mat-form-field>
 
+        <mat-form-field appearance="fill">
+            <mat-label>Phone number</mat-label>
+            <input matInput type="text" formControlName="phoneNumber" />
+            <mat-error *ngIf="this.form.invalid">
+                Phone number is invalid
+            </mat-error>
+        </mat-form-field>
+
         <mat-checkbox color="primary" formControlName="smsNotification">SMS Notifications</mat-checkbox>
         <mat-checkbox color="primary" formControlName="emailNotification">Email Notifications</mat-checkbox>
 

@@ -17,6 +17,7 @@ export class EditDonorDialogComponent {
     password: new FormControl('', [Validators.required]),
     firstName: new FormControl('', [Validators.required]),
     lastName: new FormControl('', [Validators.required]),
+    phoneNumber: new FormControl('', [Validators.required, Validators.pattern('\\+[0-9]+'), Validators.minLength(10), Validators.maxLength(13)]),
     bloodType: new FormControl('', [Validators.required]),
     smsNotification: new FormControl(false),
     emailNotification: new FormControl(false),
@@ -53,6 +54,7 @@ export class EditDonorDialogComponent {
       password: '',
       firstName: '',
       lastName: '',
+      phoneNumber: '',
       bloodType: '',
       smsNotification: false,
       emailNotification: false,
@@ -61,6 +63,7 @@ export class EditDonorDialogComponent {
     editableDonor.password = donor.password;
     editableDonor.firstName = donor.firstName;
     editableDonor.lastName = donor.lastName;
+    editableDonor.phoneNumber = donor.phoneNumber;
     editableDonor.bloodType = donor.bloodType;
     editableDonor.smsNotification = donor.smsNotification ? true : false;
     editableDonor.emailNotification = donor.emailNotification ? true : false;
